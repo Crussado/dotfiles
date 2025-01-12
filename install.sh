@@ -1,15 +1,14 @@
-#!/bin/bash
+#! /bin/bash
 
-PATH=$(dirname "$(realpath $0)")
+FILE_PATH=$(dirname "$(realpath $0)")
 
-# ask(package) -> resp
+# ask(package) -> bool
 function ask() {
  read -p "Install $1? (Y/n): " resp
  [ -z "$resp" ] || [ "$resp" = "y" ]
 }
 
 # zsh
-
 if ask "zsh"; then
 	echo "Installing zsh"
 	apt install zsh
@@ -21,7 +20,7 @@ if ask "zsh"; then
 	apt install tmux
 
 	echo "Loading config"
-	cp "$PATH/.zsh/zshrc" "$HOME"
+	cp "$FILE_PATH/.zsh/zshrc" "$HOME"
 fi
 
 # vscode
