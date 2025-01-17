@@ -10,17 +10,40 @@ function ask() {
 
 # zsh
 if ask "zsh"; then
+	ZSH_CONFIG_PATH="$FILE_PATH/.zsh"
+
+	echo "Installing fonts powerline"
+	sudo apt-get install fonts-powerline
+
 	echo "Installing zsh"
-	apt install zsh
+	sudo apt install zsh
 
 	echo "Installing oh-my-zsh"
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+	echo "Adding theme"
+	ln -sf "$ZSH_CONFIG_PATH/.oh-my-zsh/themes/agnoster++.zsh-theme" "$ZSH/themes/"
+
+	source "$HOME/.zshrc"
+
+	echo "Installing plugins"
+	mapfile -t repos < "$FILE_PATH/.zsh/.oh-my-zsh/plugins/repos"
+	mapfile -t plugins < "$FILE_PATH/.zsh/.oh-my-zsh/plugins/plugins"
+
+	for ((i=0; i<${#repos[@]}; i++)); do
+	    plugin="${plugins[i]}"
+	    url="${repos[i]}"
+
+		folder="$ZSH/custom/plugins"
+		mkdir $plugin $folder
+	    git clone "$url" "$folder/$plugin"
+	done
+
 	echo "Installing tmux"
-	apt install tmux
+	sudo apt install tmux
 
 	echo "Loading config"
-	cp "$FILE_PATH/.zsh/zshrc" "$HOME"
+	cp "$ZSH_CONFIG_PATH/.zshrc" "$HOME"
 fi
 
 # vscode

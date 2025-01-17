@@ -15,7 +15,8 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="agnoster++"
+export ZSH_CONTEXT_PROMT=false
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -81,8 +82,8 @@ plugins=(zsh-syntax-highlighting zsh-autosuggestions zsh-history-substring-searc
 
 source $ZSH/oh-my-zsh.sh
 
-source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+# source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
@@ -112,26 +113,4 @@ bindkey '^[[B' history-substring-search-down
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export FLYCTL_INSTALL="/home/julio/.fly"
-export PATH="$FLYCTL_INSTALL/bin:$PATH"
-
-#[ -f "/home/julio/.ghcup/env" ] && source "/home/julio/.ghcup/env" # ghcup-env
-#[ -f "/home/julio/.ghcup/env" ] && source "/home/julio/.ghcup/env" # ghcup-env
-#[ -f "/home/julio/.ghcup/env" ] && source "/home/julio/.ghcup/env" # ghcup-env
-[ -f "/home/julio/.ghcup/env" ] && source "/home/julio/.ghcup/env" # ghcup-env
-# pnpm
-export PNPM_HOME="/home/julio/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# julio Config
 alias discord-update="sudo ~/Off/scripts/discord-update.sh"
-
-export PATH="/home/julio/fstar/bin:$PATH"
-
